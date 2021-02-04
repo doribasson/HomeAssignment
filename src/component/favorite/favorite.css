@@ -1,0 +1,13 @@
+.header_text {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.clearmFavModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+}
