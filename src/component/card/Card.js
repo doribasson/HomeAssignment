@@ -7,15 +7,24 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal/Modal";
 
 const Card = ({
-  card: { image_url, description, tagline, name, brewers_tips, id },
+  card: {
+    image_url,
+    description,
+    tagline,
+    name,
+    brewers_tips,
+    id,
+    selected,
+    rank
+  },
   isHome
 }) => {
   const dispatch = useDispatch();
-  const foods = useSelector(state => state.food);
-  const { food } = foods;
+  // const foods = useSelector(state => state.food);
+  // const { food, updateFood } = foods;
   const [modalShow, setModalShow] = useState(false);
 
-  useEffect(() => {}, [food]);
+  // useEffect(() => {}, [food]);
 
   return (
     <div className="card">
@@ -28,11 +37,7 @@ const Card = ({
           />
 
           <i
-            className={
-              food[id - 1] && food[id - 1].selected
-                ? "fa fa-star fa-2x"
-                : "far fa-star fa-2x"
-            }
+            className={selected ? "fa fa-star fa-2x" : "far fa-star fa-2x"}
             onClick={() => dispatch(updateFavorites(id))}
           />
         </div>
@@ -42,7 +47,7 @@ const Card = ({
             <Form.Label>Rank</Form.Label>
             <Form.Control
               as="select"
-              value={food[id - 1].rank}
+              value={rank}
               onChange={e => {
                 const { value } = e.target;
                 dispatch(updateRank(id, value));
@@ -56,11 +61,14 @@ const Card = ({
             </Form.Control>
           </Form.Group>
 
-          <img src={image_url} style={{ width: "50px" }} alt="" />
+          <img
+            onClick={() => setModalShow(true)}
+            src={image_url}
+            style={{ width: "50px" }}
+            alt=""
+          />
           <i
-            className={
-              food[id - 1].selected ? "fa fa-star fa-2x" : "far fa-star fa-2x"
-            }
+            className={selected ? "fa fa-star fa-2x" : "far fa-star fa-2x"}
             onClick={() => {
               dispatch(updateFavorites(id));
             }}

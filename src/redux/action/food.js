@@ -37,13 +37,13 @@ export const getFood = () => async dispach => {
 
 export const updateFood = searchTerm => async dispach => {
   try {
-    const res = await axios.get(
-      `https://api.punkapi.com/v2/beers?food=${searchTerm}`
-    );
+    // const res = await axios.get(
+    //   `https://api.punkapi.com/v2/beers?food=${searchTerm}`
+    // );
 
     dispach({
       type: UPDATE_FOOD,
-      payload: res.data,
+      // payload: res.data,
       searchTerm: searchTerm
     });
   } catch (err) {

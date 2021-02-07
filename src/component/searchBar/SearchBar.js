@@ -11,11 +11,13 @@ function SearchBar() {
 
   useEffect(() => {
     inputRef.current.focus();
-  }, []);
+    console.log("search change yes");
+    dispatch(updateFood(searchTerm));
+  }, [searchTerm, dispatch]);
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
-    if (event.target.value) dispatch(updateFood(event.target.value));
+    // if (event.target.value) dispatch(updateFood(event.target.value));
   };
 
   const onKeyPress = event => {

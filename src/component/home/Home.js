@@ -12,17 +12,17 @@ const Home = () => {
   const foods = useSelector(state => state.food);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardPerPage, setCardPerPage] = useState(10);
-  const { loading, food, updateFood } = foods;
+  const { loading, food, updateFood, searchTerm } = foods;
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const indexOfLastCard = currentPage * cardPerPage;
   const indexOfFirstCard = indexOfLastCard - cardPerPage;
   const initalCards = food.slice(indexOfFirstCard, indexOfLastCard);
-  const filterCards = updateFood.data?.slice(indexOfFirstCard, indexOfLastCard);
+  const filterCards = updateFood.slice(indexOfFirstCard, indexOfLastCard);
 
   useEffect(() => {
-    if (food.length === 0 && []) dispatch(getFood());
-  }, [loading, dispatch, food]);
+    if (food.length === 0) dispatch(getFood());
+  }, []);
 
   return (
     <div className="home_container">
@@ -35,11 +35,7 @@ const Home = () => {
           <SearchBar food={updateFood} />
           {food.length !== null ? (
             <Cards
-              cards={
-                !updateFood.searchName || updateFood.data.length === 0
-                  ? initalCards
-                  : filterCards
-              }
+              cards={!searchTerm ? initalCards : filterCards}
               isHome={true}
             />
           ) : (

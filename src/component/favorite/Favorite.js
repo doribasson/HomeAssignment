@@ -12,8 +12,6 @@ const Favorite = () => {
 
   const { food } = foods;
 
-  useEffect(() => {}, []);
-
   const isFoodEmpty = food.filter(item => item && item.selected);
 
   return (
