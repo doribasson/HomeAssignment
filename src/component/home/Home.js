@@ -22,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     if (food.length === 0) dispatch(getFood());
-  }, []);
+  }, [dispatch, food]);
 
   return (
     <div className="home_container">

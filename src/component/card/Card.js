@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./card.css";
 import { Form } from "react-bootstrap";
 import defaultBeer from "../../assets/images/defaultBeer.png";
 import { updateFavorites, updateRank } from "../../redux/action/food";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
 
 const Card = ({

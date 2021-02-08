@@ -26,115 +26,24 @@ export default function foodReducer(state = initialState, action) {
       };
 
     case UPDATE_FOOD:
-      // setFilteredCountries(
-      //   countries.filter((country) =>
-      //     country.name.toLowerCase().includes(search.toLowerCase()))
-      // console.log(state.food.food_pairing);
+      let newFilterFood = [];
+      state.food.forEach((item, i) => {
+        item.food_pairing &&
+          item.food_pairing.forEach((el, i) => {
+            if (
+              el.toLowerCase().search(action.searchTerm.toLowerCase()) !== -1
+            ) {
+              newFilterFood.push(item);
+            }
+            return item;
+          });
+      });
 
-      // console.log(action.searchTerm.toLowerCase());
-
-      // const filterFood = state.food.filter(item => {
-      //   item.food_pairing.filter(item1 =>
-      //     item1.includes(action.searchTerm.toLowerCase())
-      //   );
-      //   // console.log(item.food_pairing);
-      //   // console.log("lasssla");
-      //   // console.log("lala");
-      //   console.log("item", item);
-      //   return item;
-      // });
-
-      // const filterFood = state.food.filter(item => {
-      // item => item.name.toLowerCase().includes("Pilsen Lager".toLowerCase())
-      // item => item.food_pairing.includes(item1 => item1.indexOf("cakes") > -1)
-      //   let temp = action.searchTerm.toLowerCase().indexOf(item) > -1;
-      //   return temp;
-      // });
-
-      // const filterFood = state.food.filter(
-      //   item =>
-      //     item.name.toLowerCase().indexOf(action.searchTerm.toLowerCase()) !==
-      //     -1
-      // );
-
-      // const filterFood = state.food.map((item, i) => item.food_pairing[i]);
-      // const filterFood = state.food.filter((item, i) => {
-      //   // console.log(item);
-      //   let temp = item.food_pairing.filter(item1 => {
-      //     if (item1.indexOf("cake") > -1) {
-      //       // console.log(item1.indexOf("cake") !== -1, "yes");
-      //       console.log("yes");
-      //       temp = [...temp, item1];
-      //       console.log(temp, "yes");
-
-      //       return temp;
-      //     }
-      //   });
-      //   // console.log(temp);
-      //   // return temp;
-      // });
-      // console.log(temp, "temp");
-
-      // const filterFood = state.food.filter((item, i) => {
-      //   // console.log(item);
-      //   item.food_pairing.filter((item1, index) => {
-      //     // console.log(item1.search("cake") === -1);
-      //     // if (item1.indexOf("cake") === -1) {
-
-      //     return item1.search("cake") !== -1;
-      //     // temp = { ...item };
-
-      //     // console.log(...item,);
-      //     // return item1;
-      //     // item.splice(index, 1);
-      //     // console.log("yea");
-      //     // let temp = { ...item, item1 };
-      //     // console.log(item1, "yeaaaas");
-      //     // }
-      //     // console.log("yeaaaas");
-      //   });
-      //   console.log(item);
-      //   // return temp;
-      // });
-
-      // console.log(filterFood, "after");
-
-      // const temp = filterFood.filter(
-      //   item => item.food_pairing.filter(item => item.includes("cake") === true)
-      // item.food_pairing.map(item1 => item1.indexOf("cake"))
-      // );
-      // const temp1 = temp.filter(item => item.length !== 0);
-      // console.log("temp", temp);
-      // toLowerCase().includes("Pilsen Lager".toLowerCase())
-      // console.log("item", item);
-
-      // const filterFood = state.food.filter((item, i) => {
-      //   let temp = [];
-      //   item.food_pairing.map(item1 => {
-      //     if (item1.indexOf("cake") !== -1) {
-      //       temp = [...filterFood, item];
-      //       // console.log("lala");
-      //     }
-      //     // console.log("item1", item1);
-      //   });
-      //   console.log("temp", temp);
-      // });
-
-      // console.log(filterFood);
-
-      const filterFood = state.food.filter(
-        item =>
-          item.name &&
-          item.name.toLowerCase().search(action.searchTerm.toLowerCase()) !== -1
-      );
-
-      // filterFood();
-      console.log(filterFood);
+      console.log(newFilterFood);
       return {
         ...state,
         searchTerm: action.searchTerm,
-        // updateFood: { data: payload, searchName: action.searchTerm },
-        updateFood: filterFood,
+        updateFood: newFilterFood,
         loading: false
       };
 
